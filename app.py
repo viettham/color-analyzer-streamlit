@@ -80,7 +80,14 @@ if uploaded_file:
     st.image(image, caption="Ảnh đã chọn", use_column_width=True)
 
     centers = split_image_into_grid(image)
-    hex_colors = [get_hex_color(image, pt) for pt in centers]
+    
+    #hex_colors = [get_hex_color(image, pt) for pt in centers]
+    hex_colors=[]
+    for col in range(20):
+        for row in range(5):
+            idx = row * 20 + col  # Do danh sách centers lưu theo dòng → cột
+            pt = centers[idx]
+            hex_colors.append(get_hex_color(image, pt))
     
     s_values0,s_values1,s_values2,s_values3,s_values = analyze_colors(hex_colors)
 
